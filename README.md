@@ -37,30 +37,30 @@ Consider a double pendulum consisting of two point masses connected by rigid, ma
 
 The generalized coordinates are
 
-$
+$$
 \mathbf{q} =
 \begin{bmatrix}
 \theta_1 \\
 \theta_2
 \end{bmatrix},
-$
+$$
 
 where \(\theta_1\) and \(\theta_2\) describe the angular positions of the two pendulums.
 
 The system's state is
 
-$
+$$
 \mathbf{x} =
 \begin{bmatrix}
 \theta_1 & \theta_2 & \dot{\theta}_1 & \dot{\theta}_2
 \end{bmatrix}^{T}.
-$
+$$
 
 Its dynamics can be written in first-order form as
 
-$
+$$
 \dot{\mathbf{x}} = \mathbf{f}(\mathbf{x}),
-$
+$$
 
 where \(\mathbf{f}\) represents the nonlinear vector field governing the evolution of the system.
 
@@ -74,7 +74,8 @@ A reliable reference trajectory is essential for evaluating any discovered model
 
 The project uses the **classical fourth-order Runge–Kutta method (RK4)** to numerically integrate the governing equations:
 
-$
+$$
+
 \mathbf{x}_{n+1}
 =
 \mathbf{x}_n
@@ -86,18 +87,16 @@ $
 +2\mathbf{k}_3
 +\mathbf{k}_4
 \right),
-$
+$$
 
 where the intermediate stages are
 
-$
-\begin{aligned}
+$$
 \mathbf{k}_1 &= \mathbf{f}(\mathbf{x}_n),\\
 \mathbf{k}_2 &= \mathbf{f}\left(\mathbf{x}_n+\frac{\Delta t}{2}\mathbf{k}_1\right),\\
 \mathbf{k}_3 &= \mathbf{f}\left(\mathbf{x}_n+\frac{\Delta t}{2}\mathbf{k}_2\right),\\
 \mathbf{k}_4 &= \mathbf{f}\left(\mathbf{x}_n+\Delta t\,\mathbf{k}_3\right).
-\end{aligned}
-$
+$$
 
 RK4 provides a numerical reference against which the learned model can be evaluated. It is a numerical approximation, not an exact analytical solution, so validation also depends on the integration step size and numerical error.
 
@@ -109,7 +108,7 @@ Instead of fitting an unrestricted black-box model, SINDy searches for a sparse 
 
 Given sampled states arranged into a data matrix
 
-$
+$$
 \mathbf{X} =
 \begin{bmatrix}
 \mathbf{x}(t_1)^T\\
@@ -117,7 +116,7 @@ $
 \vdots\\
 \mathbf{x}(t_m)^T
 \end{bmatrix},
-$
+$$
 
 the corresponding time derivatives are represented by \(\dot{\mathbf{X}}\).
 
@@ -132,9 +131,11 @@ where the library may contain polynomial terms, trigonometric functions, and oth
 
 The dynamics are approximated as
 
-$\dot{\mathbf{X}}
+$$
+\dot{\mathbf{X}}
 \approx
-\Theta(\mathbf{X})\boldsymbol{\Xi}$
+\Theta(\mathbf{X})\boldsymbol{\Xi}
+$$
 
 where \(\boldsymbol{\Xi}\) contains the coefficients of the candidate terms.
 
@@ -191,7 +192,9 @@ The validation workflow can include:
 
 A standard quantitative measure is the root mean squared error (RMSE):
 
-$\mathrm{RMSE}
+$$
+
+\mathrm{RMSE}
 =
 \sqrt{
 \frac{1}{N}
@@ -199,7 +202,9 @@ $\mathrm{RMSE}
 \left(
 y_i-\hat{y}_i
 \right)^2
-}$
+}
+
+$$
 
 Here, \(y_i\) denotes a reference value and \(\hat{y}_i\) denotes the corresponding model prediction.
 
@@ -331,8 +336,6 @@ Potential extensions include:
 1. Brunton, S. L., Proctor, J. L., and Kutz, J. N. (2016). *Discovering governing equations from data by sparse identification of nonlinear dynamical systems.* Proceedings of the National Academy of Sciences, 113(15), 3932–3937. https://doi.org/10.1073/pnas.1517384113
 
 ## Author
-
-**[Your Name]**
 
 [Troy Chin](https://github.com/troyc03/))
 
