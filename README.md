@@ -75,7 +75,7 @@ A reliable reference trajectory is essential for evaluating any discovered model
 The project uses the **classical fourth-order Runge–Kutta method (RK4)** to numerically integrate the governing equations:
 
 $$
-\mathbf{x}_n+1 = \mathbf{x}_n
+\mathbf{x}_{n+1} = \mathbf{x}_n
 +
 \frac{\Delta t}{6}
 \left(
@@ -84,9 +84,7 @@ $$
 +2\mathbf{k}_3
 +\mathbf{k}_4
 \right),
-$$
 
-$$
 \mathbf{k}_1 &= \mathbf{f}(\mathbf{x}_n),\\
 \mathbf{k}_2 &= \mathbf{f}\left(\mathbf{x}_n+\frac{\Delta t}{2}\mathbf{k}_1\right),\\
 \mathbf{k}_3 &= \mathbf{f}\left(\mathbf{x}_n+\frac{\Delta t}{2}\mathbf{k}_2\right),\\
