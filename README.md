@@ -107,7 +107,7 @@ Instead of fitting an unrestricted black-box model, SINDy searches for a sparse 
 
 Given sampled states arranged into a data matrix
 
-$$
+[\
 \mathbf{X} =
 \begin{bmatrix}
 \mathbf{x}(t_1)^T\\
@@ -115,7 +115,7 @@ $$
 \vdots\\
 \mathbf{x}(t_m)^T
 \end{bmatrix},
-$$
+\]
 
 the corresponding time derivatives are represented by \(\dot{\mathbf{X}}\).
 
