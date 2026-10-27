@@ -75,20 +75,14 @@ A reliable reference trajectory is essential for evaluating any discovered model
 The project uses the **classical fourth-order Runge–Kutta method (RK4)** to numerically integrate the governing equations:
 
 $$
-\mathbf{x}_{n+1} = \mathbf{x}_n
-+
-\frac{\Delta t}{6}
-\left(
-\mathbf{k}_1
-+2\mathbf{k}_2
-+2\mathbf{k}_3
-+\mathbf{k}_4
-\right),
-
+\begin{aligned}
+\mathbf{x}_{n+1} &= \mathbf{x}_n + \frac{\Delta t}{6}
+\left(\mathbf{k}_1 + 2\mathbf{k}_2 + 2\mathbf{k}_3 + \mathbf{k}_4\right),\\
 \mathbf{k}_1 &= \mathbf{f}(\mathbf{x}_n),\\
-\mathbf{k}_2 &= \mathbf{f}\left(\mathbf{x}_n+\frac{\Delta t}{2}\mathbf{k}_1\right),\\
-\mathbf{k}_3 &= \mathbf{f}\left(\mathbf{x}_n+\frac{\Delta t}{2}\mathbf{k}_2\right),\\
-\mathbf{k}_4 &= \mathbf{f}\left(\mathbf{x}_n+\Delta t\,\mathbf{k}_3\right).
+\mathbf{k}_2 &= \mathbf{f}\left(\mathbf{x}_n + \frac{\Delta t}{2}\mathbf{k}_1\right),\\
+\mathbf{k}_3 &= \mathbf{f}\left(\mathbf{x}_n + \frac{\Delta t}{2}\mathbf{k}_2\right),\\
+\mathbf{k}_4 &= \mathbf{f}\left(\mathbf{x}_n + \Delta t\,\mathbf{k}_3\right).
+\end{aligned}
 $$
 
 RK4 provides a numerical reference against which the learned model can be evaluated. It is a numerical approximation, not an exact analytical solution, so validation also depends on the integration step size and numerical error.
@@ -101,7 +95,7 @@ Instead of fitting an unrestricted black-box model, SINDy searches for a sparse 
 
 Given sampled states arranged into a data matrix
 
-[\
+$$
 \mathbf{X} =
 \begin{bmatrix}
 \mathbf{x}(t_1)^T\\
@@ -115,10 +109,12 @@ the corresponding time derivatives are represented by \(\dot{\mathbf{X}}\).
 
 A candidate library of nonlinear functions is constructed:
 
-$\Theta(\mathbf{X}) =
+$$
+\Theta(\mathbf{X}) =
 \begin{bmatrix}
 1 & \mathbf{X} & \mathbf{X}^{(2)} & \cdots
-\end{bmatrix}$
+\end{bmatrix}
+$$
 
 where the library may contain polynomial terms, trigonometric functions, and other physically motivated candidate features.
 
@@ -186,17 +182,7 @@ The validation workflow can include:
 A standard quantitative measure is the root mean squared error (RMSE):
 
 $$
-
-\mathrm{RMSE}
-=
-\sqrt{
-\frac{1}{N}
-\sum_{i=1}^{N}
-\left(
-y_i-\hat{y}_i
-\right)^2
-}
-
+\mathrm{RMSE} = \sqrt{\frac{1}{N}\sum_{i=1}^{N}\left(y_i - \hat{y}_i\right)^2}
 $$
 
 Here, \(y_i\) denotes a reference value and \(\hat{y}_i\) denotes the corresponding model prediction.
@@ -334,4 +320,3 @@ Potential extensions include:
 
 ---
 
-*The goal is not merely to simulate a complex system, but to discover the mathematical structure that makes its behavior possible.*
